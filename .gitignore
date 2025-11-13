@@ -1,0 +1,30 @@
+# ---- Java ----
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+
+# Compiled class files
+**/target/
+**/out/
+**/build/
+
+# ---- VS Code ----
+.vscode/
+.settings/
+*.code-workspace
+
+# ---- IntelliJ ----
+.idea/
+*.iml
+out/
+
+# ---- Eclipse ----
+.project
+.classpath
+.settings/
+bin/
+
+# ---- OS fil
