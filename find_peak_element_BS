@@ -1,0 +1,15 @@
+int beg = 0, end = nums.length - 1;
+int t = 0;
+
+while (beg < end) {
+    int mid = (beg + end) / 2;
+
+    if (nums[mid] < nums[mid + 1]) {
+        t = mid + 1;
+        beg = mid + 1;
+    } else {
+        end = mid;
+    }
+}
+
+return beg;
