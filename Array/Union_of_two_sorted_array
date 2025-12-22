@@ -1,0 +1,40 @@
+import java.util.*;
+
+class Solution {
+    public static void main(String[] args) {
+        int[] nums1 = {1, 2, 3, 4, 5};
+        int[] nums2 = {2, 3, 5, 6};
+
+        List<Integer> temp = new ArrayList<>();
+        int i = 0, j = 0;
+
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                temp.add(nums1[i]);
+                i++;
+            } 
+            else if (nums2[j] < nums1[i]) {
+                temp.add(nums2[j]);
+                j++;
+            } 
+            else { // equal elements
+                temp.add(nums1[i]);
+                i++;
+                j++;
+            }
+        }
+
+        // add remaining elements
+        while (i < nums1.length) {
+            temp.add(nums1[i]);
+            i++;
+        }
+
+        while (j < nums2.length) {
+            temp.add(nums2[j]);
+            j++;
+        }
+
+        System.out.println(temp);
+    }
+}
