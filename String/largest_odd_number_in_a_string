@@ -1,0 +1,22 @@
+class Solution {
+    public String largestOddNumber(String num) {
+
+        int max = -1;
+        int index = -1;
+
+        for (int i = 0; i < num.length(); i++) {
+
+            int digit = Character.getNumericValue(num.charAt(i));
+
+            if (digit % 2 != 0 && digit >= max) {
+                max = digit;
+                index = i;
+            }
+        }
+
+        if (index == -1)
+            return "";
+
+        return num.substring(0, index + 1);
+    }
+}
