@@ -1,0 +1,11 @@
+class Solution {
+    public ListNode insertAtHead(ListNode head, int X) {
+
+        ListNode n1 = new ListNode(X); 
+        n1.next = head;               // link new node to old head
+        head = n1;                    // update head
+
+        return head;
+    }
+}
+
