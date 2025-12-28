@@ -1,0 +1,18 @@
+class Solution {
+    public ListNode reverseList(ListNode head) {
+
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+
+            ListNode next = curr.next; // 1. save next
+            curr.next = prev;          // 2. reverse link
+            prev = curr;               // 3. move prev
+            curr = next;               // 4. move curr
+        }
+
+        return prev; // new head
+    }
+}
+
