@@ -1,0 +1,13 @@
+Node insertAtHead(Node head, int x) {
+    Node temp = new Node(x);   // <-- FIX
+
+    if (head == null) {
+        return temp;
+    }
+
+    temp.next = head;
+    head.prev = temp;
+    head = temp;
+
+    return head;
+}
