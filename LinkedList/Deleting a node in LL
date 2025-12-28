@@ -1,0 +1,23 @@
+Node deleteNode(Node head, Node node) {
+
+    // case 1: empty list
+    if (head == null) return null;
+
+    // case 2: deleting head
+    if (head == node) {
+        return head.next;
+    }
+
+    Node temp = head;
+
+    // traverse to node just before target
+    while (temp.next != null) {
+        if (temp.next == node) {
+            temp.next = temp.next.next;
+            break;
+        }
+        temp = temp.next;
+    }
+
+    return head;
+}
