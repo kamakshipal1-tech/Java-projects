@@ -1,0 +1,15 @@
+boolean search(Node head, Node node) {
+
+    if (head == null) return false;
+
+    Node temp = head;
+
+    while (temp != null) {
+        if (temp == node) {
+            return true;
+        }
+        temp = temp.next;
+    }
+
+    return false;
+}
