@@ -5,7 +5,7 @@ boolean search(Node head, Node node) {
     Node temp = head;
 
     while (temp != null) {
-        if (temp == node) {
+        if (temp.val == node) {
             return true;
         }
         temp = temp.next;
