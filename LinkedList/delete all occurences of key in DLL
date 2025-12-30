@@ -1,0 +1,24 @@
+if (head == null) return null;
+
+Node temp = head;
+
+while (temp != null) {
+
+    if (temp.data == key) {
+
+        if (temp == head) {
+            head = head.next;
+            if (head != null)
+                head.prev = null;
+        }
+        else {
+            temp.prev.next = temp.next;
+            if (temp.next != null)
+                temp.next.prev = temp.prev;
+        }
+    }
+
+    temp = temp.next;
+}
+
+return head;
