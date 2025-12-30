@@ -1,0 +1,29 @@
+class Solution {
+
+    // Function to add one to the number represented by the linked list
+    public ListNode addOne(ListNode head) {
+        int carry = addCarry(head);
+
+        // if carry remains, add new node at front
+        if (carry == 1) {
+            ListNode newNode = new ListNode(1);
+            newNode.next = head;
+            head = newNode;
+        }
+        return head;
+    }
+
+    // Recursive function to add carry
+    private int addCarry(ListNode node) {
+        // base case: last node
+        if (node == null) {
+            return 1;   // add 1 initially
+        }
+
+        int carry = addCarry(node.next);
+
+        int sum = node.val + carry;
+        node.val = sum % 10;
+        return sum / 10;
+    }
+}
