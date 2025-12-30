@@ -1,0 +1,48 @@
+class Solution {
+
+    // Reverse linked list
+    private ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+
+    // Check palindrome
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null)
+            return true;
+
+        // Step 1: find middle
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Step 2: reverse second half
+        ListNode secondHead = reverseList(slow.next);
+
+        // Step 3: compare both halves
+        ListNode first = head;
+        ListNode second = secondHead;
+        boolean isPalin = true;
+
+        while (second != null) {
+            if (first.val != second.val) {
+                isPalin = false;
+                break;
+            }
+            first = first.next;
+            second = second.next;
+        }
+
+        // Step 4: restore list
+        slow.next = reverseList(secondHead);
+
+        return isPalin;
+    }
+}
