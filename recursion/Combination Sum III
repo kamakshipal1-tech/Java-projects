@@ -1,0 +1,14 @@
+solve(idx, k, n, temp)
+
+if (temp.size() == k) {
+    if (n == 0) ans.add(temp);
+    return;
+}
+
+if (idx > 9 || n < 0) return;
+
+temp.add(idx);
+solve(idx + 1, k, n - idx, temp);
+temp.remove(temp.size() - 1);
+
+solve(idx + 1, k, n, temp);
