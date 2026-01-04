@@ -1,0 +1,36 @@
+class Solution {
+
+    List<String> ans = new ArrayList<>();
+
+    public List<String> letterCombinations(String digits) {
+        if (digits.length() == 0) return ans;
+
+        solve(0, digits, "");
+        return ans;
+    }
+
+    void solve(int idx, String digits, String temp) {
+
+        if (idx == digits.length()) {
+            ans.add(temp);
+            return;
+        }
+
+        String letters = getLetters(digits.charAt(idx));
+
+        for (int i = 0; i < letters.length(); i++) {
+            solve(idx + 1, digits, temp + letters.charAt(i));
+        }
+    }
+
+    String getLetters(char d) {
+        if (d == '2') return "abc";
+        if (d == '3') return "def";
+        if (d == '4') return "ghi";
+        if (d == '5') return "jkl";
+        if (d == '6') return "mno";
+        if (d == '7') return "pqrs";
+        if (d == '8') return "tuv";
+        return "wxyz"; // '9'
+    }
+}
