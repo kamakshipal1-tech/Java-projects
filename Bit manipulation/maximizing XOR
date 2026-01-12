@@ -1,0 +1,11 @@
+max = 0;
+
+for (i = L; i <= R; i++) {
+    for (j = L; j <= R; j++) {
+        m = i ^ j;
+        if (m > max)
+            max = m;
+    }
+}
+
+return max;
