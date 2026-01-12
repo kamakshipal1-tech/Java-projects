@@ -1,0 +1,17 @@
+String binaryConv(int n) {
+    if (n == 0) return "0";
+
+    String res = "";
+
+    while (n > 0) {
+        if (n % 2 == 1)
+            res += '1';
+        else
+            res += '0';
+
+        n = n / 2;
+    }
+
+    // reverse because bits are added from LSB to MSB
+    return reverse(res);
+}
