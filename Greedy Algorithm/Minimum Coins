@@ -1,0 +1,20 @@
+import java.util.*;
+
+class Solution {
+    public int MinimumCoins(int[] coins, int amount) {
+        Arrays.sort(coins);              // ascending
+        int n = coins.length;
+        int count = 0;
+
+        for (int i = n - 1; i >= 0; i--) {   // start from max coin
+            if (amount >= coins[i]) {
+                int take = amount / coins[i];
+                count += take;
+                amount = amount % coins[i];
+            }
+        }
+
+        if (amount != 0) return -1;
+        return count;
+    }
+}
