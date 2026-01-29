@@ -1,0 +1,23 @@
+public int findPlatform(int[] arr, int[] dep, int n) {
+    Arrays.sort(arr);
+    Arrays.sort(dep);
+
+    int i = 0, j = 0;
+    int platforms = 0;
+    int maxPlatforms = 0;
+
+    while (i < n && j < n) {
+        // Train arrives
+        if (arr[i] <= dep[j]) {
+            platforms++;          // need one more platform
+            maxPlatforms = Math.max(maxPlatforms, platforms);
+            i++;
+        }
+        // Train departs
+        else {
+            platforms--;          // free one platform
+            j++;
+        }
+    }
+    return maxPlatforms;
+}
