@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public int shortestJobFirst(int[] bt) {
+        int n = bt.length;
+        
+        // Step 1: Sort burst times
+        Arrays.sort(bt);
+        
+        int waitingTime = 0;
+        int totalWaitingTime = 0;
+        
+        // Step 2 & 3: Calculate waiting times
+        for (int i = 0; i < n; i++) {
+            totalWaitingTime += waitingTime;
+            waitingTime += bt[i];
+        }
+        
+        // Step 4 & 5: Average waiting time (floor automatically by int division)
+        return totalWaitingTime / n;
+    }
+}
