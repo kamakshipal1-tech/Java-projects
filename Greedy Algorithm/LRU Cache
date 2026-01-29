@@ -1,0 +1,70 @@
+class LRUCache {
+
+    class Node {
+        int key, value;
+        Node prev, next;
+        Node(int k, int v) {
+            key = k;
+            value = v;
+        }
+    }
+
+    private int capacity;
+    private java.util.HashMap<Integer, Node> map;
+    private Node head, tail;   // dummy nodes
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        map = new java.util.HashMap<>();
+        
+        head = new Node(0, 0);   // dummy head
+        tail = new Node(0, 0);   // dummy tail
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    // Get value
+    public int get(int key) {
+        if (!map.containsKey(key)) return -1;
+
+        Node node = map.get(key);
+        remove(node);       // remove from current position
+        insertAtFront(node); // make it most recently used
+        return node.value;
+    }
+
+    // Put key-value
+    public void put(int key, int value) {
+        if (map.containsKey(key)) {
+            Node node = map.get(key);
+            node.value = value;
+            remove(node);
+            insertAtFront(node);
+        } else {
+            if (map.size() == capacity) {
+                // remove least recently used (LRU)
+                Node lru = tail.prev;
+                remove(lru);
+                map.remove(lru.key);
+            }
+
+            Node newNode = new Node(key, value);
+            map.put(key, newNode);
+            insertAtFront(newNode);
+        }
+    }
+
+    // Remove node from DLL
+    private void remove(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    // Insert node right after head (most recently used)
+    private void insertAtFront(Node node) {
+        node.next = head.next;
+        node.prev = head;
+        head.next.prev = node;
+        head.next = node;
+    }
+}
