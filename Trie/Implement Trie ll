@@ -1,0 +1,80 @@
+class Trie {
+
+    private static class Node {
+        Node[] links = new Node[26];
+        int cntEndWith = 0;
+        int cntPrefix = 0;
+    }
+
+    private Node root;
+
+    public Trie() {
+        root = new Node();
+    }
+
+    public void insert(String word) {
+
+        Node node = root;
+
+        for (char ch : word.toCharArray()) {
+            int idx = ch - 'a';
+
+            if (node.links[idx] == null) {
+                node.links[idx] = new Node();
+            }
+
+            node = node.links[idx];
+            node.cntPrefix++;
+        }
+
+        node.cntEndWith++;
+    }
+
+    public int countWordsEqualTo(String word) {
+
+        Node node = root;
+
+        for (char ch : word.toCharArray()) {
+            int idx = ch - 'a';
+
+            if (node.links[idx] == null) {
+                return 0;
+            }
+
+            node = node.links[idx];
+        }
+
+        return node.cntEndWith;
+    }
+
+    public int countWordsStartingWith(String prefix) {
+
+        Node node = root;
+
+        for (char ch : prefix.toCharArray()) {
+            int idx = ch - 'a';
+
+            if (node.links[idx] == null) {
+                return 0;
+            }
+
+            node = node.links[idx];
+        }
+
+        return node.cntPrefix;
+    }
+
+    public void erase(String word) {
+
+        Node node = root;
+
+        for (char ch : word.toCharArray()) {
+            int idx = ch - 'a';
+
+            node = node.links[idx];
+            node.cntPrefix--;
+        }
+
+        node.cntEndWith--;
+    }
+}
