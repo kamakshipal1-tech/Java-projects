@@ -1,0 +1,31 @@
+class Solution {
+
+    static class Node {
+        Node[] next = new Node[26];
+    }
+
+    public static int countDistinctSubstrings(String s) {
+
+        Node root = new Node();
+        int count = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+
+            Node node = root;
+
+            for (int j = i; j < s.length(); j++) {
+
+                int idx = s.charAt(j) - 'a';
+
+                if (node.next[idx] == null) {
+                    node.next[idx] = new Node();
+                    count++;
+                }
+
+                node = node.next[idx];
+            }
+        }
+
+        return count + 1;   // +1 for empty substring
+    }
+}
